@@ -1,0 +1,58 @@
+<div *ngIf="authService.user | async">
+	<div>
+		Logado como <strong> {{authService.currentUserEmail}}</strong>
+	</div>
+
+	<nav>
+		<div>
+			<a [routerLink]="['/']">{{name}}</a>
+			<div>
+				<ul>
+					<li>
+						<a class="nav-link text-white" [routerLink]="['']"> Home</a>
+					</li>    
+					<li>
+						 <a [routerLink]="['/firelist']"> Lista</a>
+					</li>          
+					 <li>
+							<a (click)="logout()
+" class="nav-link text-white" [routerLink]="['/']"> Sair</a>
+					 </li>
+				</ul>
+			</div>
+		 </div>  
+	</nav>
+	<router-outlet></router-outlet>
+
+
+</div>
+
+<div>
+
+<form *ngIf="!(authService.user | async)" class="row g-3 d-flex flex-column">
+<h1>{{name}}</h1>
+
+<div>
+	<label for="inputPassword2" class="visually-hidden">E-mail</label>
+	<input type="email" name="email" [(ngModel)]="email" placeholder="E-mail">
+</div>
+
+<div class="col-auto">
+	<label for="inputPassword2" class="visually-hidden">Password</label>
+	<input type="password" name="senha" [(ngModel)]="senha" placeholder="Senha">
+</div>
+<br>
+
+<div>
+	<button (click)="loginEmail()">LOGIN COM E-MAIL</button>
+	<button (click)="loginGmail()">LOGIN COM GOOGLE</button>
+</div>
+</form>
+
+<div *ngIf="authService.authError" style="color: red">
+{{authService.authError}}
+</div>
+
+
+
+</div>

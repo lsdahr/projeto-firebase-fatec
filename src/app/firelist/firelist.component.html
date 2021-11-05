@@ -1,0 +1,27 @@
+<h2>Listas do Fire Base</h2>
+<hr/>
+
+  <div>Nome:</div>
+  <div> <input [(ngModel)]="nome"/> </div>
+<br/>
+  <div>Idade:</div>
+  <div> <input type="number" [(ngModel)]="idade"/> </div>
+<br/>
+  <button (click)="adc()">Adicionar</button>
+<hr/>
+  <table border="1">
+    <tr>
+      <th>Nome</th>
+      <th>Idade</th>
+      <th>Email</th>
+      <th>Comando</th>
+    </tr>
+    <tr *ngFor="let item of list | async">
+      <td [title]="['Chave: '+item.key]">{{item.nome}}</td>
+      <td>{{item.idade}}</td>
+      <td>{{item.email}}</td>
+      <td>
+          <button (click)="delete(item.key)">Remover</button>
+      </td>
+    </tr>
+  </table>
